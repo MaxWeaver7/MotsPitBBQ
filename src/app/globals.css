@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-rust: #C24E00;
+  --color-rust-dark: #A04000;
+  --color-rust-light: #D4710A;
+  --color-wood-dark: #2A1A10;
+  --color-wood-medium: #5C3A1E;
+  --color-wood-light: #8B6914;
+  --color-cream: #FFF8F0;
+  --color-cream-dark: #F0E6D6;
+  --color-charcoal: #1A1108;
+  --color-smoke: #2D2218;
+  --color-paper: #F5EEDF;
+  --color-paper-dark: #E8DCC8;
+
+  --font-display: "Oswald", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-cream);
+    background-color: var(--color-charcoal);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-charcoal);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-rust);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-rust-light);
+  }
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility text-shadow-sm {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+@utility text-shadow-lg {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
