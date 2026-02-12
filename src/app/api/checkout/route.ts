@@ -118,10 +118,10 @@ export async function POST(req: Request) {
     // return NextResponse.json({ url: session.url });
     // ──────────────────────────────────────────────
 
-    // DEMO MODE: Return mock data
+    // DEMO MODE: Return mock order confirmation
     return NextResponse.json({
       demo: true,
-      message: "This is a demo. In production, this redirects to Stripe Checkout.",
+      message: "Demo mode — in production this redirects to secure checkout.",
       order: {
         items: items.map((i) => ({
           name: i.name,
@@ -131,28 +131,6 @@ export async function POST(req: Request) {
         subtotal: subtotal.toFixed(2),
         tax: tax.toFixed(2),
         total: total.toFixed(2),
-        stripeFee: (total * 0.029 + 0.3).toFixed(2),
-        platformFee: (total * 0.1).toFixed(2),
-        netToRestaurant: (total - (total * 0.029 + 0.3) - total * 0.1).toFixed(2),
-      },
-      flow: {
-        step1: "Customer clicks Checkout → redirected to Stripe Checkout page",
-        step2: "Customer enters card info, selects pickup time, adds instructions",
-        step3: "Payment processes → Stripe fires checkout.session.completed webhook",
-        step4: "Webhook handler: saves order to DB, sends SMS + email to restaurant",
-        step5: "Customer sees confirmation page with order number and pickup ETA",
-        step6: "Restaurant prepares order, customer picks up",
-      },
-      notifications: {
-        restaurant: {
-          email: "Order summary email via Resend/SendGrid with full line items",
-          sms: "Quick alert via Twilio: 'New order! 3 items, pickup in 30 min. Total: $45.00'",
-          dashboard: "Future: real-time kitchen dashboard showing incoming orders",
-        },
-        customer: {
-          email: "Confirmation email with order number, items, pickup time, restaurant address",
-          sms: "Optional: 'Your order at Mot's Pit BBQ is confirmed! Pickup at 12:30 PM'",
-        },
       },
     });
   } catch {

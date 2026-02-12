@@ -23,20 +23,17 @@ export default function CartSidebar() {
 
   const handleCheckout = async () => {
     // In production: POST to /api/checkout which creates a Stripe Checkout Session
-    // For demo: show alert explaining the flow
+    // For demo: show a customer-facing confirmation
     alert(
-      `🔥 Order Total: $${total.toFixed(2)}\n\n` +
-        `In production, this redirects to Stripe Checkout where the customer:\n` +
-        `• Enters payment info (card)\n` +
-        `• Selects a pickup time\n` +
-        `• Adds special instructions\n\n` +
-        `After payment:\n` +
-        `• Customer gets email/SMS confirmation\n` +
-        `• Restaurant gets notified via email + SMS\n` +
-        `• Order appears on kitchen dashboard\n\n` +
-        `Stripe fee on this order: ~$${(total * 0.029 + 0.30).toFixed(2)}\n` +
-        `Your 10% platform fee: $${(total * 0.10).toFixed(2)}\n` +
-        `Net to restaurant: $${(total - (total * 0.029 + 0.30) - (total * 0.10)).toFixed(2)}`
+      `Order Total: $${total.toFixed(2)}\n\n` +
+        `In the live version, you'll be taken to a secure checkout page where you can:\n\n` +
+        `• Pay with any major credit or debit card\n` +
+        `• Choose your preferred pickup time\n` +
+        `• Add any special instructions\n\n` +
+        `After placing your order:\n` +
+        `• You'll receive an email & text confirmation\n` +
+        `• Your food will be ready when you arrive\n\n` +
+        `No delivery app fees — just great BBQ, ready for pickup.`
     );
   };
 
